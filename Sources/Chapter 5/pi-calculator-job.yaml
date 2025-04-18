@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi-job
+spec:
+  template: # Pod template
+    spec:
+      containers:
+      - name: pi
+        image: perl:5.34 # Perl image
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"] # Calculate Pi to 2000 digits
+      restartPolicy: Never # Or OnFailure - Never is common for batch jobs
+  backoffLimit: 4 # Number of retries before marking job as failed (default 6)
+  # ttlSecondsAfterFinished: 100 # Optional: Auto-delete job after 100s

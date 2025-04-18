@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod-with-storage
+spec:
+  containers:
+  - name: my-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+    volumeMounts: # Mount the volume into the container
+    - mountPath: /usr/share/nginx/html # Path inside container
+      name: my-storage-volume # Must match volume name below
+  volumes: # Define the volume source for the Pod
+  - name: my-storage-volume
+    persistentVolumeClaim: # Specify the source is a PVC
+      claimName: my-app-pvc # Name of the PVC created above

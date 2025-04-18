@@ -1,0 +1,41 @@
+# Terraform state files
+*.tfstate
+*.tfstate.*.backup
+
+# Terraform plan files (optional, uncomment if you don't want to commit plan artifacts)
+# *.tfplan
+
+# Terraform provider plugins and lock file
+.terraform/
+.terraform.lock.hcl
+
+# Crash log files
+crash.log
+crash.*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Generated output files (like the PDF)
+*.pdf
+
+# Python virtual environment and cache files (good practice if Python is used)
+venv/
+*.pyc
+__pycache__/
+.env
+
+# Sensitive files (add more specific patterns if needed)
+*.pem
+*.key
+*.cer
+*.crt
+credentials*
+secrets*
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo

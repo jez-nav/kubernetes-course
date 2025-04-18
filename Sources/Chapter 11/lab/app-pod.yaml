@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-demo-pod
+spec:
+  containers:
+  - name: app-container
+    image: busybox:latest
+    # Command to display consumed config/secrets
+    command: ["/bin/sh", "-c"]
+    args:
+      - >
+        echo "--- Environment Variables ---";
+        echo "USERNAME_SECRET: $USERNAME_SECRET";
+        echo "API_KEY_SECRET: $API_KEY_SECRET";
+        # echo "LOG_LEVEL_CM: $LOG_LEVEL_CM"; # This was commented out in the original example
+        echo "";
+        echo "--- ConfigMap Volume Mount (/etc/config) ---";
+        ls -l /etc/config;
+        echo "Content of app.properties:";
+        cat /etc/config/app.properties;
+        echo "";
+        echo "--- Secret Volume Mount (/etc/secret) ---";
+        ls -l /etc/secret;
+        echo "Content of username_file:";
+        cat /etc/secret/username_file;
+        echo "Content of apikey_file:";
+        cat /etc/secret/apikey_file;
+        echo "";
+        echo "--- ConfigMap Single Value Volume Mount (/etc/special) ---";
+        ls -l /etc/special;
+        echo "Content of special.txt:";
+        cat /etc/special/special.txt;
+        sleep 3600
+    env:
+      # Consume Secret keys as environment variables
+      - name: USERNAME_SECRET
+        valueFrom:
+          secretKeyRef:
+            name: my-app-secret
+            key: username
+      - name: API_KEY_SECRET
+        valueFrom:
+          secretKeyRef:
+            name: my-app-secret
+            key: api.key
+      # Consume ConfigMap key as environment variable (Example commented out in original)
+      # - name: LOG_LEVEL_CM
+      #   valueFrom:
+      #     configMapKeyRef:
+      #       name: my-app-config
+      #       key: log.level.direct # Assuming this key exists directly in ConfigMap data
+
+    volumeMounts:
+      # Mount the entire ConfigMap as a directory
+      - name: config-volume
+        mountPath: /etc/config
+      # Mount the entire Secret as a directory
+      - name: secret-volume
+        mountPath: /etc/secret
+        readOnly: true
+      # Mount a specific key from ConfigMap as a single file
+      - name: config-single-value-volume
+        mountPath: /etc/special/special.txt # Mount point is the file itself
+        subPath: special.value # Key from ConfigMap to mount
+
+  volumes:
+    # Define the ConfigMap volume source
+    - name: config-volume
+      configMap:
+        name: my-app-config
+        # Mount specific keys as specific filenames within the volume
+        items:
+          - key: app.properties # Key in ConfigMap
+            path: app.properties # Filename in volume
+    # Define the Secret volume source
+    - name: secret-volume
+      secret:
+        secretName: my-app-secret
+        items:
+          - key: username
+            path: username_file # Rename the file in the volume
+          - key: api.key
+            path: apikey_file
+    # Define the volume for the single ConfigMap value
+    - name: config-single-value-volume
+      configMap:
+        name: my-app-config
+        items:
+          - key: special.value
+            path: special.value # Path relative to volume root (used by subPath)
+
+  restartPolicy: Never # Run once for demo

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-app-pvc
+  # namespace: my-app-ns # PVCs are namespaced
+spec:
+  accessModes:
+    - ReadWriteOnce # Request RWO access
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi # Request at least 1Gi
+  # storageClassName: fast-ssd # Optional: Request a specific class

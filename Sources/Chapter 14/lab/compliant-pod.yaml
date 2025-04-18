@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: compliant-pod
+  namespace: restricted-ns
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    securityContext: # Settings compliant with 'restricted'
+      allowPrivilegeEscalation: false
+      runAsNonRoot: true
+      runAsUser: 1001 # Example non-root user ID
+      capabilities:
+        drop: ["ALL"] # Drop all capabilities
+      seccompProfile:
+        type: RuntimeDefault # Use default seccomp profile

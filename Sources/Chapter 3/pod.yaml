@@ -1,0 +1,13 @@
+apiVersion: v1 # Specifies the API version
+kind: Pod       # Specifies the type of object
+metadata:
+  name: my-nginx-pod # Name of the Pod
+  labels:
+    app: nginx   # Labels for organization and selection
+spec: # Specification of the desired state
+  containers:
+  - name: nginx-container # Name of the container within the Pod
+    image: nginx:latest    # Docker image to use
+    ports:
+    - containerPort: 80 # Port the container exposes
+      protocol: TCP

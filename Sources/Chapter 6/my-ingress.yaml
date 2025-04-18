@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simple-fanout-ingress
+  annotations:
+    # Annotations are controller-specific, e.g., for nginx-ingress:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  # ingressClassName: nginx # Specify if multiple controllers exist
+  rules:
+  - host: myapp.example.com # Optional: Route based on hostname
+    http:
+      paths:
+      - path: /foo # Route requests for myapp.example.com/foo
+        pathType: Prefix # Matches paths starting with /foo
+        backend:
+          service:
+            name: service-foo # To Service named 'service-foo'
+            port:
+              number: 80 # On port 80 of that service
+      - path: /bar
+        pathType: Prefix
+        backend:
+          service:
+            name: service-bar
+            port:
+              number: 8080
+  # tls: # Optional: Define TLS termination
+  # - hosts:
+  #   - myapp.example.com
+  #   secretName: myapp-tls-secret # K8s Secret containing tls.crt and tls.key

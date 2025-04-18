@@ -1,0 +1,22 @@
+apiVersion: autoscaling.k8s.io/v1 # VPA API group
+kind: VerticalPodAutoscaler
+metadata:
+  name: my-app-vpa
+spec:
+  targetRef: # Points to the controller whose Pods VPA should manage
+    apiVersion: "apps/v1"
+    kind:       Deployment
+    name:       my-app # Name of the Deployment
+  updatePolicy:
+    updateMode: "Off" # Start with recommendations only ("Auto" to apply changes)
+  resourcePolicy: # Optional: Control how requests/limits are set
+    containerPolicies:
+      - containerName: '*' # Apply to all containers in the Pod
+        minAllowed: # Minimum allowed requests
+          cpu: 100m
+          memory: 50Mi
+        maxAllowed: # Maximum allowed requests/limits
+          cpu: 1
+          memory: 500Mi
+        # controlledResources: ["cpu", "memory"] # Specify which resources VPA manages
+        # controlledValues: RequestsAndLimits # Or RequestsOnly

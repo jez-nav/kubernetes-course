@@ -1,0 +1,14 @@
+# Example StorageClass (AWS EBS GP3)
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: aws-gp3-standard
+  # annotations:
+  #   storageclass.kubernetes.io/is-default-class: "true" # Make this the default
+provisioner: ebs.csi.aws.com # AWS EBS CSI driver provisioner
+parameters:
+  type: gp3 # EBS volume type
+  fsType: ext4 # Filesystem type
+volumeBindingMode: WaitForFirstConsumer # Delay binding until a Pod uses the PVC (recommended)
+reclaimPolicy: Delete # Or Retain - Delete is common for dynamic PVs
+allowVolumeExpansion: true # Allow resizing PVCs later

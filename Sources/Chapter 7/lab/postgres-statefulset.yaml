@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service # Headless service for DNS discovery
+metadata:
+  name: postgres-headless
+spec:
+  clusterIP: None
+  selector:
+    app: postgres-sts
+  ports:
+  - port: 5432
+    name: postgres
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-db
+spec:
+  serviceName: "postgres-headless"
+  replicas: 1 # Start with a single instance database
+  selector:
+    matchLabels:
+      app: postgres-sts
+  template:
+    metadata:
+      labels:
+        app: postgres-sts
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: postgres
+        image: postgres:13 # Use official PostgreSQL image
+        ports:
+        - containerPort: 5432
+          name: postgres
+        env: # Set required environment variables for postgres image
+        - name: POSTGRES_PASSWORD
+          value: "mysecretpassword" # Use Secrets in production!
+        - name: PGDATA # Tell postgres where the data directory is mounted
+          value: /var/lib/postgresql/data/pgdata
+        volumeMounts:
+        - name: postgres-data # Mount the persistent volume
+          mountPath: /var/lib/postgresql/data
+        readinessProbe: # Check if postgres is ready to accept connections
+          exec:
+            command: ["psql", "-U", "postgres", "-c", "SELECT 1"]
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 2
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-data # Name used in volumeMounts
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 2Gi # Request 2Gi storage
+      # storageClassName: standard # Uncomment/change if needed

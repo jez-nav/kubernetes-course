@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Service # Headless service
+metadata:
+  name: postgres-headless
+spec:
+  clusterIP: None
+  selector:
+    app: postgres-sts-ha
+  ports:
+  - port: 5432
+    name: postgres
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-db-ha
+spec:
+  serviceName: "postgres-headless"
+  replicas: 2 # Deploy a primary (0) and a standby (1)
+  selector:
+    matchLabels:
+      app: postgres-sts-ha
+  template:
+    metadata:
+      labels:
+        app: postgres-sts-ha
+    spec:
+      terminationGracePeriodSeconds: 10
+      # Add Anti-Affinity
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - postgres-sts-ha
+              topologyKey: "kubernetes.io/hostname"
+      # Init container could be used for complex setup/replication config
+      # initContainers:
+      # - name: init-postgres
+      #   image: postgres:13
+      #   command: ["/bin/bash", "/scripts/init.sh"]
+      #   env:
+      #     - name: POD_NAME
+      #       valueFrom: { fieldRef: { fieldPath: metadata.name } }
+      #     # Add other env vars needed by init script
+      #   volumeMounts:
+      #   - name: postgres-init-scripts
+      #     mountPath: /scripts
+      #   - name: postgres-data
+      #     mountPath: /var/lib/postgresql/data
+      containers:
+      - name: postgres
+        image: postgres:13
+        ports:
+        - containerPort: 5432
+          name: postgres
+        env:
+        - name: POSTGRES_PASSWORD
+          value: "pgpassword" # Use Secrets!
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
+        # Basic readiness probe
+        readinessProbe:
+          exec:
+            command: ["psql", "-U", "postgres", "-c", "SELECT 1"]
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          timeoutSeconds: 5
+      volumes: # Volume for init script ConfigMap
+      - name: postgres-init-scripts
+        configMap:
+          name: postgres-init-config
+          defaultMode: 0755 # Make script executable
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi # Small size for demo
+      # storageClassName: standard

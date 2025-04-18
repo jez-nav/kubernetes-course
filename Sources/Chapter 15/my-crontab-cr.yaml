@@ -1,0 +1,9 @@
+apiVersion: "stable.example.com/v1" # Matches CRD group and version
+kind: CronTab # Matches CRD kind
+metadata:
+  name: my-new-cron-object
+  # namespace: default # If namespaced scope
+spec: # Fields defined in the CRD schema's spec section
+  cronSpec: "*/5 * * * *"
+  image: my-awesome-cron-image:latest
+  replicas: 1

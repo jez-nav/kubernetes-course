@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: counter-app
+spec:
+  volumes:
+  - name: app-logs
+    emptyDir: {} # Shared volume for logs
+
+  containers:
+  - name: counter # Main application container
+    image: busybox:latest
+    command: ["/bin/sh", "-c"]
+    args:
+      - >
+        i=0;
+        while true; do
+          echo "$(date) - Count: $i" >> /var/log/count.log;
+          i=$((i+1));
+          sleep 2;
+        done
+    volumeMounts:
+    - name: app-logs # Mount the shared volume
+      mountPath: /var/log
+    resources: # Add some basic resource requests/limits
+      requests:
+        cpu: "50m"
+        memory: "32Mi"
+      limits:
+        cpu: "100m"
+        memory: "64Mi"
+
+  - name: log-reader # Sidecar container
+    image: busybox:latest
+    command: ["/bin/sh", "-c", "tail -f /var/log/count.log"] # Continuously tail the log file
+    volumeMounts:
+    - name: app-logs # Mount the same shared volume
+      mountPath: /var/log
+    resources:
+      requests:
+        cpu: "25m"
+        memory: "16Mi"
+      limits:
+        cpu: "50m"
+        memory: "32Mi"

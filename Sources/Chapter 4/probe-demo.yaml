@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: probe-demo
+spec:
+  containers:
+  - name: nginx-probed
+    image: nginx:1.21
+    ports:
+    - containerPort: 80
+    livenessProbe:
+      httpGet:
+        path: / # Path to check on the nginx server
+        port: 80
+      initialDelaySeconds: 5 # Wait 5s before first probe
+      periodSeconds: 10     # Probe every 10s
+      failureThreshold: 3   # Consider failed after 3 consecutive failures
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 80
+      initialDelaySeconds: 3
+      periodSeconds: 5
+      successThreshold: 1   # Consider ready after 1 success
+      failureThreshold: 2

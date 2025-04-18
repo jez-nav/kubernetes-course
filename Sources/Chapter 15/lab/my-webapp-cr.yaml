@@ -1,0 +1,10 @@
+apiVersion: stable.example.com/v1 # Use the group/version from CRD
+kind: WebApp # Use the kind from CRD
+metadata:
+  name: my-first-webapp
+  namespace: default # Since it's namespaced
+spec:
+  image: my-web-image:v1.2
+  replicas: 3
+  configMapName: my-app-settings # Just storing the name here
+  # port: 8080 # Using default from schema

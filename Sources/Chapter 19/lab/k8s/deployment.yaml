@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-demo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cicd-demo
+  template:
+    metadata:
+      labels:
+        app: cicd-demo
+    spec:
+      containers:
+      - name: web
+        # Image will be replaced by CI/CD
+        image: YOUR_DOCKERHUB_USERNAME/cicd-demo:latest # !!! REPLACE USERNAME !!!
+        ports:
+        - containerPort: 80

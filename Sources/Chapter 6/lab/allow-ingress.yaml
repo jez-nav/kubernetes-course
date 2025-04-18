@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-traffic
+spec:
+  podSelector: # Apply to both hello apps
+    matchLabels:
+      app: hello
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    # Allow traffic FROM pods in the ingress-nginx namespace
+    # AND specifically pods with the ingress controller label
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: ingress-nginx # Adjust if your ingress ns is different
+      podSelector:
+        matchLabels:
+          app.kubernetes.io/name: ingress-nginx # Adjust label if needed
+    ports: # Allow traffic TO the container port
+    - protocol: TCP
+      port: 8080

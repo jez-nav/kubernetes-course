@@ -1,0 +1,19 @@
+# Example PV Definition (Manual Provisioning - NFS)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-01
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany # NFS supports RWX
+  persistentVolumeReclaimPolicy: Retain # Keep data on PVC deletion
+  storageClassName: slow-nfs # Optional class name
+  mountOptions: # NFS specific mount options
+    - hard
+    - nfsvers=4.1
+  nfs: # NFS source definition
+    path: /exports/data01 # Path on the NFS server
+    server: 192.168.1.100 # IP of the NFS server

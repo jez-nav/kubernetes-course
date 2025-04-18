@@ -1,0 +1,12 @@
+# Apply this policy to deny all incoming traffic to pods with app=web
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-ingress
+spec:
+  podSelector: # Selects the pods this policy applies to
+    matchLabels:
+      app: web
+  policyTypes: # Specifies which types of traffic this policy affects
+  - Ingress # This policy only affects incoming traffic
+  # No ingress rules defined, meaning ALL ingress is denied

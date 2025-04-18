@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-cron
+spec:
+  schedule: "*/1 * * * *" # Run every minute
+  jobTemplate: # Template for the Job object it creates
+    spec:
+      template: # Pod template within the Job template
+        spec:
+          containers:
+          - name: hello
+            image: busybox:latest
+            command: ["/bin/sh", "-c", "date; echo Hello from the Kubernetes CronJob"]
+          restartPolicy: OnFailure
+  concurrencyPolicy: Forbid # Don't run if previous job is still running
+  successfulJobsHistoryLimit: 3 # Keep history of last 3 successful jobs
+  failedJobsHistoryLimit: 1     # Keep history of last 1 failed job

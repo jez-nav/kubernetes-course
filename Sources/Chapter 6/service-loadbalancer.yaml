@@ -1,0 +1,14 @@
+# Cloud environment needed for LoadBalancer type to get an External IP
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-lb-service
+spec:
+  selector:
+    app: myapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
+  # cloud provider specific annotations might be needed here

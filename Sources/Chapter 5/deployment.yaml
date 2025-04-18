@@ -1,0 +1,32 @@
+# This file reuses the Deployment definition from Chapter 3,
+# but adds the strategy and readinessProbe relevant to Chapter 5 discussions.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: # Optional: Define update strategy
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1 # Max 1 pod unavailable during update
+      maxSurge: 1       # Max 1 extra pod created during update
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.21 # Current version
+        ports:
+        - containerPort: 80
+        readinessProbe: # Add readiness probe for smoother updates
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5

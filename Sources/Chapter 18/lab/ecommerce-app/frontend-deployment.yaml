@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend-app
+        image: busybox:latest # Use busybox to simulate calls
+        command: ["/bin/sh", "-c"]
+        args:
+          - >
+            while true; do
+              echo "--- Frontend Log $(date) ---";
+              echo "Attempting to reach Products API...";
+              # Use service DNS name for discovery
+              wget -q -O- http://products-api-svc.default.svc.cluster.local || echo "Failed to reach Products API";
+              echo "";
+              echo "Attempting to reach Orders API...";
+              # Use short service name (works within same namespace)
+              wget -q -O- http://orders-api-svc || echo "Failed to reach Orders API";
+              echo "------------------------------";
+              sleep 10;
+            done

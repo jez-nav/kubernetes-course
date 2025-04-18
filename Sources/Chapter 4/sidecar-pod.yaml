@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-with-sidecar
+spec:
+  volumes: # Define a shared volume
+  - name: shared-logs
+    emptyDir: {} # Simple empty directory volume, lives as long as the Pod
+
+  containers:
+  - name: main-app # The primary application container
+    image: busybox:latest
+    # Simulate writing logs every 5 seconds
+    command: ["/bin/sh", "-c"]
+    args:
+      - >
+        i=0;
+        while true; do
+          echo "$i: Main app log message - $(date)" >> /var/log/app.log;
+          i=$((i+1));
+          sleep 5;
+        done
+    volumeMounts: # Mount the shared volume
+    - name: shared-logs
+      mountPath: /var/log
+
+  - name: sidecar-logger # The sidecar container
+    image: busybox:latest
+    # Simulate reading logs every 6 seconds
+    command: ["/bin/sh", "-c", "while true; do echo 'Sidecar reading:'; cat /var/log/app.log; sleep 6; done"]
+    volumeMounts: # Mount the same shared volume
+    - name: shared-logs
+      mountPath: /var/log

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app-v1
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: hello, version: v1 } }
+  template:
+    metadata: { labels: { app: hello, version: v1 } }
+    spec: { containers: [ { name: hello, image: "gcr.io/google-samples/hello-app:1.0", ports: [ { containerPort: 8080 } ] } ] }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-service-v1
+spec:
+  selector: { app: hello, version: v1 }
+  ports: [ { port: 80, targetPort: 8080 } ]
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app-v2
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: hello, version: v2 } }
+  template:
+    metadata: { labels: { app: hello, version: v2 } }
+    spec: { containers: [ { name: hello, image: "gcr.io/google-samples/hello-app:2.0", ports: [ { containerPort: 8080 } ] } ] }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-service-v2
+spec:
+  selector: { app: hello, version: v2 }
+  ports: [ { port: 80, targetPort: 8080 } ]
+  type: ClusterIP

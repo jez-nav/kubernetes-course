@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-ingress
+  annotations: # Use appropriate annotations for your controller if needed
+    nginx.ingress.kubernetes.io/rewrite-target: /$2 # Example for Nginx Ingress
+spec:
+  ingressClassName: nginx # Specify your ingress class name
+  rules:
+  - http:
+      paths:
+      - path: /v1(/|$)(.*) # Route /v1/* to hello-service-v1
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-service-v1
+            port: { number: 80 }
+      - path: /v2(/|$)(.*) # Route /v2/* to hello-service-v2
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-service-v2
+            port: { number: 80 }
