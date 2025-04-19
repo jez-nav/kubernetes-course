@@ -241,4 +241,4 @@
 *   [**Chapter 21 Lab:** Optimize a high-traffic app for low latency (Conceptual)](./Part%207/21.%20Performance%20Optimization.md#lab-optimize-a-high-traffic-app-for-low-latency-conceptual)
 *   [**Chapter 22 Lab:** Simulate and recover from a cluster failure (using Velero)](./Part%207/22.%20Disaster%20Recovery%20and%20High%20Availability.md#lab-simulate-and-recover-from-a-cluster-failure-using-velero)
 *   [**Chapter 23 Lab:** Publish a Helm chart to a public repository (GitHub Pages)](./Part%207/23.%20Contributing%20to%20Kubernetes%20Ecosystem.md#lab-publish-a-helm-chart-to-a-public-repository-github-pages)
-*   **Chapter 24 Lab:** (Capstone Project - Defines the project, no specific lab steps)
+*   [**Chapter 24 Lab:** (Capstone Project - Defines the project, no specific lab steps)](Part%207/24.%20Capstone%20Project.md)
