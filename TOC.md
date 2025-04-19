@@ -218,27 +218,27 @@
 
 ## Section 3: List of Labs
 
-*   **Chapter 1 Lab:** Deploy a simple containerized app on Minikube
-*   **Chapter 2 Lab:** Build and push a custom Docker image
-*   **Chapter 3 Lab:** Explore a Kubernetes cluster with kubectl
-*   **Chapter 4 Lab:** Deploy a pod with a sidecar logging container
-*   **Chapter 5 Lab:** Deploy a scalable web app with rolling updates
-*   **Chapter 6 Lab:** Expose an app with Ingress and secure it with network policies
-*   **Chapter 7 Lab:** Deploy a database with persistent storage
-*   **Chapter 8 Lab:** Provision a local Docker Container with Terraform
-*   **Chapter 9 Lab:** Create a VPC and subnets for a Kubernetes cluster
-*   **Chapter 10 Lab:** Deploy an EKS cluster with Terraform
-*   **Chapter 11 Lab:** Deploy an app with ConfigMaps and Secrets
-*   **Chapter 12 Lab:** Set up HPA for a web application
-*   **Chapter 13 Lab:** Deploy a monitoring stack with Prometheus and Grafana
-*   **Chapter 14 Lab:** Implement RBAC and secure a pod with policies
-*   **Chapter 15 Lab:** Create a simple CRD and Custom Resource
-*   **Chapter 16 Lab:** Refactor EKS Cluster to a Module
-*   **Chapter 17 Lab:** Set up GitOps for a Kubernetes application with Argo CD
-*   **Chapter 18 Lab:** Deploy a microservices-based e-commerce app
-*   **Chapter 19 Lab:** Create a CI/CD pipeline for a Kubernetes app (GitHub Actions)
-*   **Chapter 20 Lab:** Deploy a PostgreSQL cluster with backups
-*   **Chapter 21 Lab:** Optimize a high-traffic app for low latency (Conceptual)
-*   **Chapter 22 Lab:** Simulate and recover from a cluster failure (using Velero)
-*   **Chapter 23 Lab:** Publish a Helm chart to a public repository (GitHub Pages)
+*   [**Chapter 1 Lab:** Deploy a simple containerized app on Minikube](./Part%201/1.%20Introduction%20to%20Kubernetes.md#lab-deploy-a-simple-containerized-app-on-minikube)
+*   [**Chapter 2 Lab:** Build and push a custom Docker image](./Part%201/2.%20Container%20Fundamentals.md#lab-build-and-push-a-custom-docker-image)
+*   [**Chapter 3 Lab:** Explore a Kubernetes cluster with kubectl](./Part%201/3.%20Kubernetes%20Architecture.md#lab-explore-a-kubernetes-cluster-with-kubectl)
+*   [**Chapter 4 Lab:** Deploy a pod with a sidecar logging container](./Part%202/4.%20Working%20with%20Pods.md#lab-deploy-a-pod-with-a-sidecar-logging-container)
+*   [**Chapter 5 Lab:** Deploy a scalable web app with rolling updates](./Part%202/5.%20Controllers%20and%20Workloads.md#lab-deploy-a-scalable-web-app-with-rolling-updates)
+*   [**Chapter 6 Lab:** Expose an app with Ingress and secure it with network policies](./Part%202/6.%20Services%20and%20Networking.md#lab-expose-an-app-with-ingress-and-secure-it-with-network-policies)
+*   [**Chapter 7 Lab:** Deploy a database with persistent storage](./Part%202/7.%20Storage%20in%20Kubernetes.md#lab-deploy-a-database-with-persistent-storage)
+*   [**Chapter 8 Lab:** Provision a local Docker Container with Terraform](./Part%203/8.%20Introduction%20to%20Terraform.md#lab-provision-a-local-docker-container-with-terraform)
+*   [**Chapter 9 Lab:** Create a VPC and subnets for a Kubernetes cluster](./Part%203/9.%20Terraform%20Basics%20for%20Kubernetes.md#lab-create-a-vpc-and-subnets-for-a-kubernetes-cluster)
+*   [**Chapter 10 Lab:** Deploy an EKS cluster with Terraform](./Part%203/10.%20Deploying%20Kubernetes%20Clusters%20with%20Terraform.md#lab-deploy-an-eks-cluster-with-terraform)
+*   [**Chapter 11 Lab:** Deploy an app with ConfigMaps and Secrets](./Part%204/11.%20Configuration%20Management.md#lab-deploy-an-app-with-configmaps-and-secrets)
+*   [**Chapter 12 Lab:** Set up HPA for a web application](./Part%204/12.%20Scaling%20and%20Autoscaling.md#lab-set-up-hpa-for-a-web-application)
+*   [**Chapter 13 Lab:** Deploy a monitoring stack with Prometheus and Grafana](./Part%204/13.%20Observability%20and%20Monitoring.md#lab-deploy-a-monitoring-stack-with-prometheus-and-grafana)
+*   [**Chapter 14 Lab:** Implement RBAC and secure a pod with policies](./Part%205/14.%20Security%20Best%20Practices.md#lab-implement-rbac-and-secure-a-pod-with-policies)
+*   [**Chapter 15 Lab:** Create a simple CRD and Custom Resource](./Part%205/15.%20Custom%20Resources%20and%20Operators.md#lab-create-a-simple-crd-and-custom-resource)
+*   [**Chapter 16 Lab:** Refactor EKS Cluster to a Module](./Part%205/16.%20Advanced%20Terraform%20Techniques.md#lab-refactor-eks-cluster-to-a-module)
+*   [**Chapter 17 Lab:** Set up GitOps for a Kubernetes application with Argo CD](./Part%205/17.%20GitOps%20with%20Kubernetes.md#lab-set-up-gitops-for-a-kubernetes-application-with-argo-cd)
+*   [**Chapter 18 Lab:** Deploy a microservices-based e-commerce app](./Part%206/18.%20Deploying%20Microservices.md#lab-deploy-a-microservices-based-e-commerce-app)
+*   [**Chapter 19 Lab:** Create a CI/CD pipeline for a Kubernetes app (GitHub Actions)](./Part%206/19.%20CICD%20for%20Kubernetes.md#lab-create-a-cicd-pipeline-for-a-kubernetes-app-github-actions)
+*   [**Chapter 20 Lab:** Deploy a PostgreSQL cluster with backups](./Part%206/20.%20Managing%20Stateful%20Applications.md#lab-deploy-a-postgresql-cluster-with-backups)
+*   [**Chapter 21 Lab:** Optimize a high-traffic app for low latency (Conceptual)](./Part%207/21.%20Performance%20Optimization.md#lab-optimize-a-high-traffic-app-for-low-latency-conceptual)
+*   [**Chapter 22 Lab:** Simulate and recover from a cluster failure (using Velero)](./Part%207/22.%20Disaster%20Recovery%20and%20High%20Availability.md#lab-simulate-and-recover-from-a-cluster-failure-using-velero)
+*   [**Chapter 23 Lab:** Publish a Helm chart to a public repository (GitHub Pages)](./Part%207/23.%20Contributing%20to%20Kubernetes%20Ecosystem.md#lab-publish-a-helm-chart-to-a-public-repository-github-pages)
 *   **Chapter 24 Lab:** (Capstone Project - Defines the project, no specific lab steps)
