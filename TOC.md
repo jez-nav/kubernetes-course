@@ -3,48 +3,48 @@
 ## Section 1: Course Structure (Parts & Chapters)
 
 **Part 1: Foundations of Kubernetes and Containers**
-*   Chapter 1: Introduction to Kubernetes
-*   Chapter 2: Container Fundamentals
-*   Chapter 3: Kubernetes Architecture
+*   [Chapter 1: Introduction to Kubernetes](./Part%201/1.%20Introduction%20to%20Kubernetes.md)
+*   [Chapter 2: Container Fundamentals](./Part%201/2.%20Container%20Fundamentals.md)
+*   [Chapter 3: Kubernetes Architecture](./Part%201/3.%20Kubernetes%20Architecture.md)
 
 **Part 2: Core Kubernetes Concepts**
-*   Chapter 4: Working with Pods
-*   Chapter 5: Controllers and Workloads
-*   Chapter 6: Services and Networking
-*   Chapter 7: Storage in Kubernetes
+*   [Chapter 4: Working with Pods](./Part%202/4.%20Working%20with%20Pods.md)
+*   [Chapter 5: Controllers and Workloads](./Part%202/5.%20Controllers%20and%20Workloads.md)
+*   [Chapter 6: Services and Networking](./Part%202/6.%20Services%20and%20Networking.md)
+*   [Chapter 7: Storage in Kubernetes](./Part%202/7.%20Storage%20in%20Kubernetes.md)
 
 **Part 3: Infrastructure as Code with Terraform**
-*   Chapter 8: Introduction to Terraform
-*   Chapter 9: Terraform Basics for Kubernetes
-*   Chapter 10: Deploying Kubernetes Clusters with Terraform
+*   [Chapter 8: Introduction to Terraform](./Part%203/8.%20Introduction%20to%20Terraform.md)
+*   [Chapter 9: Terraform Basics for Kubernetes](./Part%203/9.%20Terraform%20Basics%20for%20Kubernetes.md)
+*   [Chapter 10: Deploying Kubernetes Clusters with Terraform](./Part%203/10.%20Deploying%20Kubernetes%20Clusters%20with%20Terraform.md)
 
 **Part 4: Intermediate Kubernetes Skills**
-*   Chapter 11: Configuration Management
-*   Chapter 12: Scaling and Autoscaling
-*   Chapter 13: Observability and Monitoring
+*   [Chapter 11: Configuration Management](./Part%204/11.%20Configuration%20Management.md)
+*   [Chapter 12: Scaling and Autoscaling](./Part%204/12.%20Scaling%20and%20Autoscaling.md)
+*   [Chapter 13: Observability and Monitoring](./Part%204/13.%20Observability%20and%20Monitoring.md)
 
 **Part 5: Advanced Kubernetes and Terraform**
-*   Chapter 14: Security Best Practices
-*   Chapter 15: Custom Resources and Operators
-*   Chapter 16: Advanced Terraform Techniques
-*   Chapter 17: GitOps with Kubernetes
+*   [Chapter 14: Security Best Practices](./Part%205/14.%20Security%20Best%20Practices.md)
+*   [Chapter 15: Custom Resources and Operators](./Part%205/15.%20Custom%20Resources%20and%20Operators.md)
+*   [Chapter 16: Advanced Terraform Techniques](./Part%205/16.%20Advanced%20Terraform%20Techniques.md)
+*   [Chapter 17: GitOps with Kubernetes](./Part%205/17.%20GitOps%20with%20Kubernetes.md)
 
 **Part 6: Real-World Kubernetes Applications**
-*   Chapter 18: Deploying Microservices
-*   Chapter 19: CI/CD for Kubernetes
-*   Chapter 20: Managing Stateful Applications
+*   [Chapter 18: Deploying Microservices](./Part%206/18.%20Deploying%20Microservices.md)
+*   [Chapter 19: CI/CD for Kubernetes](./Part%206/19.%20CICD%20for%20Kubernetes.md)
+*   [Chapter 20: Managing Stateful Applications](./Part%206/20.%20Managing%20Stateful%20Applications.md)
 
 **Part 7: Becoming a Kubernetes Expert**
-*   Chapter 21: Performance Optimization
-*   Chapter 22: Disaster Recovery and High Availability
-*   Chapter 23: Contributing to Kubernetes Ecosystem
-*   Chapter 24: Capstone Project
+*   [Chapter 21: Performance Optimization](./Part%207/21.%20Performance%20Optimization.md)
+*   [Chapter 22: Disaster Recovery and High Availability](./Part%207/22.%20Disaster%20Recovery%20and%20High%20Availability.md)
+*   [Chapter 23: Contributing to Kubernetes Ecosystem](./Part%207/23.%20Contributing%20to%20Kubernetes%20Ecosystem.md)
+*   [Chapter 24: Capstone Project](./Part%207/24.%20Capstone%20Project.md)
 
 **Part 8: Appendices**
-*   Appendix A: Kubernetes Ecosystem
-*   Appendix B: Terraform Best Practices
-*   Appendix C: Troubleshooting Guide
-*   Appendix D: Further Reading
+*   [Appendix A: Kubernetes Ecosystem](./Part%208/Appendix%20A%20-%20Kubernetes%20Ecosystem.md)
+*   [Appendix B: Terraform Best Practices](./Part%208/Appendix%20B%20-%20Terraform%20Best%20Practices.md)
+*   [Appendix C: Troubleshooting Guide](./Part%208/Appendix%20C%20-%20Troubleshooting%20Guide.md)
+*   [Appendix D: Further Reading](./Part%208/Appendix%20D%20-%20Further%20Reading.md)
 
 ---
 
